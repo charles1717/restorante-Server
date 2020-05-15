@@ -23,8 +23,9 @@ mongoose.Promise = require('bluebird');
 
 // const Dishes = require('./models/dishes');
 
-const url = config.mongoUrl;
-const connect = mongoose.connect(url, {useNewUrlParser: true});
+const dev_db_url = config.mongoUrl;
+const db_url = process.env.MONGODB_URI || dev_db_url;
+const connect = mongoose.connect(db_url, {useNewUrlParser: true});
 
 connect.then( (db) => {
   console.log('Connected correctly to server');
